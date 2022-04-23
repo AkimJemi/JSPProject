@@ -4,7 +4,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String id = (String) request.getParameter("id");
-String pw = request.getParameter("pw");
+String pw = (String) request.getParameter("pw");
 String name = "", tel = "";
 
 Connection conn = null;

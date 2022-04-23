@@ -88,6 +88,7 @@
 				<%
 				for (int i = 1; i <= rsmd.getColumnCount(); ++i) {
 					out.println("<td>" + rsmd.getColumnName(i) + "</td>");
+					out.println("<td>" + rsmd.getColumnType(i) + "</td>");
 					/* out.println("<td>" + rsmd.getColumnClassName(i) + "</td>");
 					out.println("<td>" + rsmd.getColumnCount() + "</td>");
 					out.println("<td>" + rsmd.getColumnType(i) + "</td>");

@@ -7,14 +7,22 @@
 request.setCharacterEncoding("utf-8");
 //
 String route = "";
+String secondRoute = "";
+boolean register = false;
 if (request.getParameter("route") != null) {
 	route = request.getParameter("route");
 }
+if (request.getParameter("secondRoute") != null) {
+	secondRoute = request.getParameter("secondRoute");
+}
+System.out.println("s : " + route);
+System.out.println("ss : " + secondRoute);
 //
 String name = (String) request.getParameter("name");
 String id = (String) request.getParameter("id");
 String pw = (String) request.getParameter("pw");
 String tel = (String) request.getParameter("tel");
+System.out.println("name : " + name + ", id : " + id + ", " + "pw : " + pw + ", " + "tel : " + tel);
 
 Connection conn = null;
 //
@@ -26,8 +34,7 @@ try {
 }
 
 // CheckID
-if (!route.equalsIgnoreCase("")) {
-
+if (route.equalsIgnoreCase("CheckID") || secondRoute.equalsIgnoreCase("CheckID")) {
 	try {
 		String query = "select * from user_tb where id=?";
 		PreparedStatement pstmt = conn.prepareStatement(query);
@@ -39,22 +46,31 @@ if (!route.equalsIgnoreCase("")) {
 		rs.close();
 		pstmt.close();
 	} catch (Exception ex) {
-		out.println("<html><head><script>alert('만들수 있는 아이디입니다');");
-		out.println("history.back();</script><head><html>");
-		return;
+		out.println("<html><head><script>alert('사용 가능 아이디');");
+		register = true;
+		if (!secondRoute.equalsIgnoreCase("ManagerPage")) {
+	out.println("history.back();</script><head><html>");
+		}
 		/* pageContext.forward("Round21_02_Page_Register.jsp"); */
 	} finally {
-		if (conn != null)
-	conn.close();
-		conn = null;
-	}
-	out.println("<html><head><script>alert('이미 존재하는 아이디입니다');");
+		System.out.println(register);
+		System.out.println(!route.equalsIgnoreCase("CheckID"));
+		if (register) {
+		} else {
+	if (conn != null)
+		conn.close();
+	conn = null;
+	
+	out.println("<html><head><script>alert('이미 사용 중인 아이디');");
 	out.println("history.back();</script><head><html>");
-	return;
-	/* pageContext.forward("Round21_02_Page_Register.jsp"); */
+		}
+	}
 
+	/* pageContext.forward("Round21_02_Page_Register.jsp"); */
 	// Insert
-} else {
+}
+
+if (register || !route.equalsIgnoreCase("CheckID")) {
 	//
 	try {
 		String query = "insert into user_tb values (null,?,?,?,?)";
@@ -63,6 +79,7 @@ if (!route.equalsIgnoreCase("")) {
 		pstmt.setString(2, id);
 		pstmt.setString(3, pw);
 		pstmt.setString(4, tel);
+		System.out.println("test11	 ");
 		pstmt.executeUpdate();
 		pstmt.close();
 	} catch (Exception ex) {
@@ -72,13 +89,21 @@ if (!route.equalsIgnoreCase("")) {
 		if (conn != null)
 	conn.close();
 		conn = null;
-
 	}
-	session.setAttribute("name", name);
-	session.setAttribute("id", id);
-	session.setAttribute("tel", tel);
-	session.setAttribute("pw", pw);
-	pageContext.forward("Round21_02_Page_Login.jsp");
-	return;
+	if (secondRoute.equalsIgnoreCase("ManagerPage")) {
+		System.out.println("id : " + id + ", " + "pw : " + pw + ", " + "tel : " + tel);
+		System.out.println("s : " + route);
+		System.out.println("ss : " + secondRoute);
+		out.println("<html><head><script>alert('회원 등록 완료');</script><head><html>");
+		pageContext.forward("Round21_02_Page_Main.jsp?id=1");
+		return;
+	} else {
+		session.setAttribute("name", name);
+		session.setAttribute("id", id);
+		session.setAttribute("tel", tel);
+		session.setAttribute("pw", pw);
+		pageContext.forward("Round21_02_Page_Login.jsp");
+		return;
+	}
 }
 %>

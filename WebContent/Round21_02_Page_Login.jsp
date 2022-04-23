@@ -14,10 +14,10 @@ if (pw == null)
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript">
-function MoveToRegister() {
-	var id = login_form.id.value;
-	location.href = "Round21_02_Page_Register.jsp?id="+id+"&from=login";in
-}
+	function MoveToRegister() {
+		var id = login_form.id.value;
+		location.href = "Round21_02_Page_Register.jsp?id=" + id + "&from=login";
+	}
 </script>
 <style>
 .centerStyle {
@@ -35,6 +35,7 @@ function MoveToRegister() {
 .header {
 	
 }
+
 </style>
 </head>
 <body>
@@ -52,9 +53,11 @@ function MoveToRegister() {
 				<td><input type="password" name="pw" size='25' value="<%=pw%>" /></td>
 			</tr>
 			<tr>
-				<td colspan='1'><td colspan='1' style="justify-content: space-around">
-			<input type="submit" value="로그인" /><input
-					type="button" onclick="MoveToRegister()" value="회원가입" /></td></tr>
+				<td colspan='1'>
+				<td colspan='1' style="justify-content: space-around"><input
+					type="submit" value="로그인" /><input type="button"
+					onclick="MoveToRegister()" value="회원가입" /></td>
+			</tr>
 		</table>
 	</form>
 </body>

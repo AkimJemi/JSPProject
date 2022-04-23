@@ -14,38 +14,6 @@ if (request.getParameter("from") != null) {
 if (from.equals("login")) {
 	id = (String) request.getParameter("id");
 }
-/* 
-if (request.getParameter("tel") != null) {
-	tel = (String) request.getParameter("tel");
-}
-if (request.getParameter("name") != null) {
-	name = (String) request.getParameter("name");
-}
-if (request.getParameter("id") != null) {
-	id = (String) request.getParameter("id");
-	request.setAttribute("id", id);
-}
-if (request.getParameter("pw") != null ) {
-	pw = (String) request.getParameter("pw");
-	request.setAttribute("pw", pw);
-}
-
-if (request.getAttribute("id") != null) {
-	id = (String) request.getAttribute("id");
-}
-if (request.getAttribute("pw") != null) {
-	pw = (String) request.getAttribute("pw");
-} */
-
-/* if (request.getAttribute("id") != null) {
-	id = (String) request.getAttribute("id");
-} else if (request.getAttribute("pw") != null) {
-	pw = (String) request.getAttribute("pw");
-} else if (request.getAttribute("tel") != null) {
-	tel = (String) request.getAttribute("tel");
-} else if (request.getAttribute("name") != null) {
-	name = (String) request.getAttribute("name");
-} */
 %>
 <!DOCTYPE html>
 <html>
@@ -53,48 +21,44 @@ if (request.getAttribute("pw") != null) {
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function isNull2(obj) {
-		var data = obj.value;
-		if (data == '') {
-			alert(obj.name + '필드는 공백임');
-			obj.focus();
-			return true;
-		}
-		return false;
-	}
-	function check_form() {
-		if (isNull2(reg_form.name))
-			return false;
-		if (isNull2(reg_form.id))
-			return false;
-		if (isNull2(reg_form.pw))
-			return false;
-		if (isNull2(reg_form.pw2))
-			return false;
-		if (isNull2(reg_form.tel))
-			return false;
-
-		var pw = reg_form.pw.value;
-		var pw2 = reg_form.pw2.value;
-		if (pw != pw2) {
-			alert("확인 비밀번호가 정확하지 않습니다");
-			pw2.focus();
-			return false;
-		}
+function isNull2(obj) {
+	var data = obj.value;
+	if (data == '') {
+		alert(obj.name + '필드는 공백임');
+		obj.focus();
 		return true;
 	}
-	function checkID(obj) {
-		var ci = reg_form.id.value;
-		var id = reg_form.id.value;
-		var pw = reg_form.pw.value;
-		var name = reg_form.name.value;
-		var tel = reg_form.tel.value;
-
-		location.href = 'Round21_02_Page_Register_Process.jsp?route=CheckID';
-		//id=' + id + '&pw=' + pw + '&name=' + name+ '&tel=' + tel
+	return false;
+}
+function check_form() {
+	if (isNull2(reg_form.name))
+		return false;
+	if (isNull2(reg_form.id))
+		return false;
+	if (isNull2(reg_form.pw))
+		return false;
+	if (isNull2(reg_form.pw2))
+		return false;
+	if (isNull2(reg_form.tel))
+		return false;
+	
+	var pw = reg_form.pw.value;
+	var pw2 = reg_form.pw2.value;
+	if (pw != pw2) {
+		alert("확인 비밀번호가 정확하지 않습니다");
+		return false;
 	}
-</script>
+	return true;
+}
+function checkID(obj) {
+	var id = reg_form.id.value;
+	var pw = reg_form.pw.value;
+	var name = reg_form.name.value;
+	var tel = reg_form.tel.value;
 
+	location.href = 'Round21_02_Page_Register_Process.jsp?route=CheckID';
+}
+</script>
 </head>
 <body>
 	<center>

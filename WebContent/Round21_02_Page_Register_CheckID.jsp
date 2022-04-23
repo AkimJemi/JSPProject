@@ -5,11 +5,8 @@
 request.setCharacterEncoding("utf-8");
 String id = request.getParameter("ckId");
 Connection conn = null;
-out.println(id);
 
 try {
-	Class.forName("org.gjt.mm.mysql.Driver");
-	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "1234");
 	String query = "select * from user_tb where id=?";
 	PreparedStatement pstmt = conn.prepareStatement(query);
 	pstmt.setString(1, id);
