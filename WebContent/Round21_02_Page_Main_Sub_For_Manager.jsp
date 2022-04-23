@@ -1,4 +1,6 @@
 <%@page import="java.util.Map"%>
+<%@ page
+	import="java.sql.*, javax.naming.Context, javax.naming.InitialContext, javax.sql.DataSource"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -16,9 +18,35 @@ for (String key : map.keySet()) {
 	String[] value = map.get(key);
 	System.out.println("key : " + key + ", value : " + value[0]);
 }
+//
+Connection conn = null;
+Statement stmt = null;
 
+try {
+	Context context = new InitialContext();
+	DataSource source = (DataSource) context.lookup("java:comp/env/jdbc/myconn");
+	conn = source.getConnection();
+} catch (Exception e) {
+}
+try {
+	String query = "select * from user_tb";
+	ResultSet rs = stmt.executeQuery(query);
+	if (rs.next()) {
+		System.out.println(rs);
+	} else
+		throw new Exception();
 
-
+	rs.close();
+	stmt.close();
+} catch (Exception ex) {
+	out.println("<html><head><script>alert('아이디와 비번을 확인해주세요');");
+	out.println("history.back();</script><head><html>");
+	return;
+} finally {
+	if (conn != null)
+		conn.close();
+	conn = null;
+}
 
 %>
 
