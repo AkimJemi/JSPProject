@@ -19,12 +19,8 @@ Cookies cookies = new Cookies(request);
 	} else {
 	%>
 	로그인 한 상태
-
 	<%
 	}
 	%>
-
-
-
 </body>
 </html>
