@@ -23,7 +23,6 @@ public class Cookies {
 
 	public Cookie getCookie(String name) {
 		return cookieMap.get(name);
-
 	}
 
 	public String getValue(String name) throws IOException {
