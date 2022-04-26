@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*, javax.naming.Context, javax.naming.InitialContext, javax.sql.DataSource"%>
+<%@ page
+	import="java.sql.*, javax.naming.Context, javax.naming.InitialContext, javax.sql.DataSource"%>
 <%
 request.setCharacterEncoding("utf-8");
 String id = (String) request.getParameter("id");
@@ -44,5 +45,5 @@ session.setAttribute("name", name);
 session.setAttribute("id", id);
 session.setAttribute("tel", tel);
 session.setAttribute("pw", pw);
-pageContext.forward("Round21_02_Page_Main.jsp");
+pageContext.forward("Round21_02_Page_Main.jsp?page_startNum=1");
 %>

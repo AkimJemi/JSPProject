@@ -4,6 +4,10 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 	<display-name>JSPProject</display-name>
+	<context-param>
+		<param-name>ipAddress</param-name>
+		<param-value>127.0.0.1</param-value>
+	</context-param>
 
 	<resource-ref>
 		<description>My SQL Resource</description>

@@ -56,7 +56,7 @@ function checkID(obj) {
 	var name = reg_form.name.value;
 	var tel = reg_form.tel.value;
 
-	location.href = 'Round21_02_Page_Register_Process.jsp?route=CheckID';
+	location.href = 'Round21_02_Page_Register_Process.jsp?id='+id + '&route=CheckId&secondRoute=historyBack';
 }
 </script>
 </head>
@@ -64,7 +64,7 @@ function checkID(obj) {
 	<center>
 		<h2>register page</h2>
 		<form name="reg_form" method="post"
-			action="Round21_02_Page_Register_Process.jsp"
+			action="Round21_02_Page_Register_Process.jsp?route=CheckId&secondRoute=register"
 			onSubmit="return check_form()">
 			<table width='400' border='1'>
 				<tr>
